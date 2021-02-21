@@ -105,7 +105,7 @@ vector<state> misplaced(vector<state> nodes, state node) { // Misplaced Tile Heu
     misplacedNodes = expand(nodes, nextExpand);
 
     if (nodes.size() > node.max) {
-        nextExpand.max = nodes.size();
+        misplacedNodes.front().max = nodes.size();
     }
 
 
@@ -160,7 +160,7 @@ vector<state> manhattan(vector<state> nodes, state node) {
     state nextExpand = manhattanNodes.at(lowestIndex);
     manhattanNodes = expand(nodes, nextExpand);
     if (nodes.size() > node.max) {
-        nextExpand.max = nodes.size();
+        manhattanNodes.front().max = nodes.size();
     }
 
 
@@ -226,42 +226,44 @@ int main()
     int function;
  
 
-
-    cout << "Welcome to Tommy's Eight-Puzzle Solver. Type '1' to use a default puzzle or '2' to create your own." << endl;
-    cin >> type;
-    if (type == 1) {
-        test.parameter[0][0] = 0;
-        test.parameter[0][1] = 1;
-        test.parameter[0][2] = 2;
-        test.parameter[1][0] = 4;
-        test.parameter[1][1] = 5;
-        test.parameter[1][2] = 3;
-        test.parameter[2][0] = 7;
-        test.parameter[2][1] = 8;
-        test.parameter[2][2] = 6;
-    }
-    if (type == 2) {
-        cout << "Please enter 9 numbers:" << endl;
-        for (int i = 0; i < 9; i++) {
-            cin >> num[i];
+    
+        cout << "Welcome to Tommy's Eight-Puzzle Solver. Type '1' to use a default puzzle or '2' to create your own." << endl;
+        cin >> type;
+        if (type == 1) {
+            test.parameter[0][0] = 1;
+            test.parameter[0][1] = 3;
+            test.parameter[0][2] = 6;
+            test.parameter[1][0] = 5;
+            test.parameter[1][1] = 0;
+            test.parameter[1][2] = 7;
+            test.parameter[2][0] = 4;
+            test.parameter[2][1] = 8;
+            test.parameter[2][2] = 2;
         }
-        test.parameter[0][0] = num[0];
-        test.parameter[0][1] = num[1];
-        test.parameter[0][2] = num[2];
-        test.parameter[1][0] = num[3];
-        test.parameter[1][1] = num[4];
-        test.parameter[1][2] = num[5];
-        test.parameter[2][0] = num[6];
-        test.parameter[2][1] = num[7];
-        test.parameter[2][2] = num[8];
-    }
-    cout << "Please enter a number for the algorithm: 1 for Uniform Cost Search 2 for Misplaced Tile Heuristic 3 for Manhattan Distance Heuristic." << endl;
-    cin >> function;
+        if (type == 2) {
+            cout << "Please enter 9 numbers:" << endl;
+            for (int i = 0; i < 9; i++) {
+                cin >> num[i];
+            }
+            test.parameter[0][0] = num[0];
+            test.parameter[0][1] = num[1];
+            test.parameter[0][2] = num[2];
+            test.parameter[1][0] = num[3];
+            test.parameter[1][1] = num[4];
+            test.parameter[1][2] = num[5];
+            test.parameter[2][0] = num[6];
+            test.parameter[2][1] = num[7];
+            test.parameter[2][2] = num[8];
+        }
+        cout << "Please enter a number for the algorithm: 1 for Uniform Cost Search 2 for Misplaced Tile Heuristic 3 for Manhattan Distance Heuristic." << endl;
+        cin >> function;
 
-    test = searchAlgorithm(test, function);
+        test = searchAlgorithm(test, function);
+    
 
 
 
 
 }
+
 
